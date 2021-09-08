@@ -1,0 +1,35 @@
+.header {
+  gap: 40px;
+  padding: 16px 20px;
+}
+
+.header-list {
+  gap: 12px;
+}
+
+.header-list-item {
+  display: flex;
+  align-items: center;
+}
+
+.header-list-item a {
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+}
+
+.header-list-item a:hover {
+  color: #00bc8c;
+  background-color: #444;
+}
+
+.header a:hover {
+  text-decoration: none;
+}
+
+.header h2 a {
+  color: white;
+}
+
+.header h2 a:hover {
+  color: #00bc8c;
+}
