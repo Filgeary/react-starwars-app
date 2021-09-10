@@ -1,7 +1,23 @@
-.item-list .list-group-item {
+.item-list {
+  position: relative;
+  min-height: 490px;
+}
+
+.item-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
 }
 
-.item-list .list-group-item:hover {
+.item-list-item:hover,
+.item-list-item:focus,
+.item-list-item:active {
   background-color: #444;
+}
+
+.item-list-id {
+  font-size: 0.8em;
+  font-style: italic;
+  color: #ddd;
 }
