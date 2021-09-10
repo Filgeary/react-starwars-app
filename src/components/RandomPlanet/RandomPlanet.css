@@ -16,6 +16,12 @@
   padding-left: 1rem;
 }
 
+.random-planet-id {
+  font-size: 0.7em;
+  font-style: italic;
+  color: #ccc;
+}
+
 .random-planet .list-group {
   margin: 1rem 0 0 1rem;
 }

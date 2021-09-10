@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SwapiService from '../../services/SwapiService'
+import { randomInt } from '../../utils/utils'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import Spinner from '../Spinner/Spinner'
 import './RandomPlanet.css'
@@ -30,8 +31,7 @@ class RandomPlanet extends Component {
   updatePlanet = () => {
     this.setState({ isLoading: true })
 
-    // TODO: replace to Math random
-    const idx = '7'
+    const idx = String(randomInt(1, 25))
 
     swapiService
       .getPlanet(idx)
@@ -63,7 +63,10 @@ const RandomPlanetView = ({ planet }) => {
         alt={name}
       />
       <div>
-        <h3 className="random-planet-title">{name}</h3>
+        <h3 className="random-planet-title">
+          {name}&nbsp;
+          <span className="random-planet-id">#{id}</span>
+        </h3>
 
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
