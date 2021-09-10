@@ -8,11 +8,6 @@ import './RandomPlanet.css'
 const swapiService = new SwapiService()
 
 class RandomPlanet extends Component {
-  constructor() {
-    super()
-    this.updatePlanet()
-  }
-
   state = {
     planet: {},
     isLoading: true,
@@ -31,12 +26,21 @@ class RandomPlanet extends Component {
   updatePlanet = () => {
     this.setState({ isLoading: true })
 
-    const idx = String(randomInt(1, 25))
+    const idx = String(randomInt(2, 19))
 
     swapiService
       .getPlanet(idx)
       .then(this.handlePlanetLoaded)
       .catch(this.handleError)
+  }
+
+  componentDidMount() {
+    this.updatePlanet()
+
+    // TODO: uncomment for prod
+    // setInterval(() => {
+    //   this.updatePlanet()
+    // }, 10000)
   }
 
   render() {
