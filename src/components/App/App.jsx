@@ -23,10 +23,10 @@ class App extends Component {
         <RandomPlanet />
 
         <div className="row mb-2">
-          <div className="col-md-6">
+          <div className="col-md-5">
             <ItemList onItemSelected={this.handleItemSelected} />
           </div>
-          <div className="col-md-6">
+          <div className="col-md-7">
             <PersonDetails itemId={itemSelected} />
           </div>
         </div>
