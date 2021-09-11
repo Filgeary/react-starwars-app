@@ -37,20 +37,19 @@ class RandomPlanet extends Component {
   componentDidMount() {
     this.updatePlanet()
 
-    // TODO: uncomment for prod
-    // setInterval(() => {
-    //   this.updatePlanet()
-    // }, 10000)
+    setInterval(() => {
+      this.updatePlanet()
+    }, 15000)
   }
 
   render() {
     const { planet, isLoading, isError } = this.state
 
     return (
-      <div className="random-planet jumbotron rounded">
-        {isLoading ? <Spinner /> : null}
+      <div className="random-planet jumbotron rounded col-md-8 offset-2">
+        {isLoading && Object.keys(planet).length === 0 ? <Spinner /> : null}
         {isError ? <ErrorMessage /> : null}
-        {!isLoading && !isError && Object.keys(planet).length > 0 ? (
+        {!isError && Object.keys(planet).length > 0 ? (
           <RandomPlanetView planet={planet} />
         ) : null}
       </div>
@@ -68,22 +67,23 @@ const RandomPlanetView = ({ planet }) => {
         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
         alt={name}
       />
-      <div>
+
+      <div className="random-planet-content">
         <h3 className="random-planet-title">
           {name}&nbsp;
           <span className="random-planet-id">#{id}</span>
         </h3>
 
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">
+          <li className="random-planet-list-item list-group-item">
             <span className="term">Population</span>
             <span>{population}</span>
           </li>
-          <li className="list-group-item">
+          <li className="random-planet-list-item list-group-item">
             <span className="term">Rotation Period</span>
             <span>{rotationPeriod}</span>
           </li>
-          <li className="list-group-item">
+          <li className="random-planet-list-item list-group-item">
             <span className="term">Diameter</span>
             <span>{diameter}</span>
           </li>
