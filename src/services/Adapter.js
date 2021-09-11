@@ -3,9 +3,9 @@ export default class Adapter {
     return {
       id: url.match(/([0-9]*)\/$/)[1],
       name,
-      population,
+      population: Number(population).toLocaleString(),
       rotationPeriod: rotation_period,
-      diameter,
+      diameter: Number(diameter).toLocaleString(),
     }
   }
 
