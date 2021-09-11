@@ -3,19 +3,30 @@
   display: flex;
   justify-content: space-between;
   min-height: 214px;
+  margin-bottom: 40px;
   padding: 0;
+  background-color: #222;
 }
 
-.random-planet .planet-image {
-  width: 35%;
+.random-planet-image-wrapper {
+  display: flex;
+  width: 40%;
   height: auto;
   max-height: 300px;
+  margin-right: 20px;
   object-fit: cover;
 }
 
+.random-planet .planet-image {
+  border-radius: 50%;
+  box-shadow: 10px 5px 25px #00bc8c;
+  animation: rotate 15s linear infinite;
+}
+
 .random-planet-content {
-  width: 100%;
-  padding: 20px;
+  width: 65%;
+  padding: 20px 28px;
+  background-color: #303030;
 }
 
 .random-planet-title {
