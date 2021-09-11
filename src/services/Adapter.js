@@ -3,7 +3,10 @@ export default class Adapter {
     return {
       id: url.match(/([0-9]*)\/$/)[1],
       name,
-      population: Number(population).toLocaleString(),
+      population:
+        population !== 'unknown'
+          ? Number(population).toLocaleString()
+          : 'Unknown',
       rotationPeriod: rotation_period,
       diameter: Number(diameter).toLocaleString(),
     }
