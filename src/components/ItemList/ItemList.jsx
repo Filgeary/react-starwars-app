@@ -44,7 +44,7 @@ class ItemList extends Component {
         {isLoading ? <Spinner /> : null}
         {isError ? <ErrorMessage /> : null}
 
-        {!isError && itemList.length > 0 ? (
+        {!isLoading && !isError && itemList.length > 0 ? (
           <ItemListView itemList={itemList} onItemSelected={onItemSelected} />
         ) : null}
       </ul>
