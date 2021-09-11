@@ -6,6 +6,7 @@ import Spinner from '../Spinner/Spinner'
 import './RandomPlanet.css'
 
 const swapiService = new SwapiService()
+let timerId = 0
 
 class RandomPlanet extends Component {
   state = {
@@ -37,9 +38,13 @@ class RandomPlanet extends Component {
   componentDidMount() {
     this.updatePlanet()
 
-    setInterval(() => {
+    timerId = setInterval(() => {
       this.updatePlanet()
     }, 15000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(timerId)
   }
 
   render() {
