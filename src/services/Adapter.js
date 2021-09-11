@@ -9,13 +9,13 @@ export default class Adapter {
     }
   }
 
-  adaptPerson = ({ url, name, gender, birthYear, eyeColor }) => {
+  adaptPerson = ({ url, name, gender, birth_year, eye_color }) => {
     return {
       id: url.match(/([0-9]*)\/$/)[1],
       name,
       gender,
-      birthYear,
-      eyeColor,
+      birthYear: birth_year,
+      eyeColor: eye_color,
     }
   }
 
