@@ -12,10 +12,11 @@ class App extends Component {
 
   handleItemSelected = id => {
     this.setState({ itemSelected: id })
-    console.log(id)
   }
 
   render() {
+    const { itemSelected } = this.state
+
     return (
       <div className="container-lg">
         <Header />
@@ -26,7 +27,7 @@ class App extends Component {
             <ItemList onItemSelected={this.handleItemSelected} />
           </div>
           <div className="col-md-6">
-            <PersonDetails />
+            <PersonDetails itemId={itemSelected} />
           </div>
         </div>
       </div>
