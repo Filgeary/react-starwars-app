@@ -50,7 +50,9 @@ class RandomPlanet extends Component {
       <div className="random-planet jumbotron rounded">
         {isLoading ? <Spinner /> : null}
         {isError ? <ErrorMessage /> : null}
-        {!isLoading && !isError ? <RandomPlanetView planet={planet} /> : null}
+        {!isLoading && !isError && Object.keys(planet).length > 0 ? (
+          <RandomPlanetView planet={planet} />
+        ) : null}
       </div>
     )
   }
