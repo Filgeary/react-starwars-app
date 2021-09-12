@@ -3,6 +3,7 @@ import Header from '../Header/Header'
 import ItemList from '../ItemList/ItemList'
 import PersonDetails from '../PersonDetails/PersonDetails'
 import RandomPlanet from '../RandomPlanet/RandomPlanet'
+import WelcomeScreen from '../WelcomeScreen/WelcomeScreen'
 import './App.css'
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
     return (
       <div className="container-lg">
         <Header />
+        <WelcomeScreen />
         <RandomPlanet />
 
         <div className="row mb-2">

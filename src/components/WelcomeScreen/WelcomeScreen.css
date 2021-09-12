@@ -1,0 +1,20 @@
+.welcome-screen {
+  display: flex;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  padding: 12px;
+  padding-top: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-screen__title {
+  margin: 0;
+  font-size: 20px;
+  background: linear-gradient(90deg, yellow, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+  text-align: center;
+}

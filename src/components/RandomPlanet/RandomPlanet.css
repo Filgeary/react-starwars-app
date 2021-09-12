@@ -12,16 +12,16 @@
 .random-planet-image-wrapper {
   display: flex;
   width: 40%;
-  height: auto;
-  max-height: 300px;
   margin-right: 20px;
   object-fit: cover;
 }
 
-.random-planet .planet-image {
+.random-planet-image {
+  height: auto;
+  max-height: 250px;
   border-radius: 50%;
   box-shadow: 10px 5px 25px #00bc8c;
-  animation: rotate 15s linear infinite;
+  animation: rotate-reverse 20s linear infinite;
 }
 
 .random-planet-content {
@@ -53,4 +53,13 @@
 
 .random-planet .list-group-item .term {
   font-style: italic;
+}
+
+@keyframes rotate-reverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
 }
