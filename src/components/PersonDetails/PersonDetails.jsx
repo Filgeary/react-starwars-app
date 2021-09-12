@@ -79,7 +79,7 @@ const PersonDetailsView = ({ itemDetails }) => {
         alt={name}
       />
 
-      <div className="card-body">
+      <div className="person-content card-body">
         <h3 className="person-details-title">{name}</h3>
 
         <ul className="list-group list-group-flush">

@@ -3,9 +3,10 @@
   display: flex;
   justify-content: space-between;
   min-height: 214px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   padding: 0;
-  background-color: #222;
+  background-color: transparent;
+  /* background-color: #222; */
 }
 
 .random-planet-image-wrapper {
@@ -27,6 +28,8 @@
   width: 65%;
   padding: 20px 28px;
   background-color: #303030;
+  background: linear-gradient(90deg, #000 0%, 50%, #222 100%);
+  border-radius: 8px;
 }
 
 .random-planet-title {
@@ -45,6 +48,7 @@
   justify-content: space-between;
   gap: 50px;
   padding: 0.5rem;
+  background-color: transparent;
 }
 
 .random-planet .list-group-item .term {

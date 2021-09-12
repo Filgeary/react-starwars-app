@@ -1,7 +1,7 @@
 .header {
   gap: 40px;
   padding: 16px 20px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .header-list {
@@ -28,7 +28,7 @@
 }
 
 .header h2 a {
-  color: white;
+  color: #ddd;
 }
 
 .header h2 a:hover {

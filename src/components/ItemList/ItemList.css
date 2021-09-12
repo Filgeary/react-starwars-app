@@ -1,6 +1,7 @@
 .item-list {
   position: relative;
   min-height: 490px;
+  background: linear-gradient(180deg, #000 0%, 50%, #222 100%);
 }
 
 .item-list-item {
@@ -8,12 +9,14 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  background-color: transparent;
 }
 
 .item-list-item:hover,
 .item-list-item:focus,
 .item-list-item:active {
   background-color: #444;
+  border-left: 3px solid #00bc8c;
 }
 
 .item-list-id {

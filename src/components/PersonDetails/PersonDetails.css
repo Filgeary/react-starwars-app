@@ -12,6 +12,10 @@
   object-fit: cover;
 }
 
+.person-content {
+  background: linear-gradient(90deg, #000 0%, 50%, #222 100%);
+}
+
 .person-details-title {
   margin-bottom: 16px;
   text-align: center;
@@ -23,6 +27,7 @@
   gap: 16px;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+  background-color: transparent;
 }
 
 .person-details .list-group-item .term {
