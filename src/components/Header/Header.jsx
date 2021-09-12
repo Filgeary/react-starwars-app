@@ -4,7 +4,7 @@ import './Header.css'
 const Header = () => {
   return (
     <div className="header d-flex">
-      <h2>
+      <h2 className="header-title">
         <a href="home">StarWars DB</a>
       </h2>
 

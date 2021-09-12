@@ -3,19 +3,22 @@ export default class Adapter {
     return {
       id: url.match(/([0-9]*)\/$/)[1],
       name,
-      population,
+      population:
+        population !== 'unknown'
+          ? Number(population).toLocaleString()
+          : 'Unknown',
       rotationPeriod: rotation_period,
-      diameter,
+      diameter: Number(diameter).toLocaleString(),
     }
   }
 
-  adaptPerson = ({ url, name, gender, birthYear, eyeColor }) => {
+  adaptPerson = ({ url, name, gender, birth_year, eye_color }) => {
     return {
       id: url.match(/([0-9]*)\/$/)[1],
       name,
       gender,
-      birthYear,
-      eyeColor,
+      birthYear: birth_year,
+      eyeColor: eye_color,
     }
   }
 

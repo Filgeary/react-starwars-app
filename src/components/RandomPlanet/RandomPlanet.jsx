@@ -1,17 +1,14 @@
 import React, { Component } from 'react'
 import SwapiService from '../../services/SwapiService'
+import { randomInt } from '../../utils/utils'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import Spinner from '../Spinner/Spinner'
 import './RandomPlanet.css'
 
 const swapiService = new SwapiService()
+let timerId = 0
 
 class RandomPlanet extends Component {
-  constructor() {
-    super()
-    this.updatePlanet()
-  }
-
   state = {
     planet: {},
     isLoading: true,
@@ -30,8 +27,7 @@ class RandomPlanet extends Component {
   updatePlanet = () => {
     this.setState({ isLoading: true })
 
-    // TODO: replace to Math random
-    const idx = '7'
+    const idx = String(randomInt(2, 19))
 
     swapiService
       .getPlanet(idx)
@@ -39,14 +35,28 @@ class RandomPlanet extends Component {
       .catch(this.handleError)
   }
 
+  componentDidMount() {
+    this.updatePlanet()
+
+    timerId = setInterval(() => {
+      this.updatePlanet()
+    }, 15000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(timerId)
+  }
+
   render() {
     const { planet, isLoading, isError } = this.state
 
     return (
-      <div className="random-planet jumbotron rounded">
-        {isLoading ? <Spinner /> : null}
+      <div className="random-planet jumbotron rounded col-md-8 offset-2">
+        {isLoading && Object.keys(planet).length === 0 ? <Spinner /> : null}
         {isError ? <ErrorMessage /> : null}
-        {!isLoading && !isError ? <RandomPlanetView planet={planet} /> : null}
+        {!isError && Object.keys(planet).length > 0 ? (
+          <RandomPlanetView planet={planet} />
+        ) : null}
       </div>
     )
   }
@@ -57,24 +67,30 @@ const RandomPlanetView = ({ planet }) => {
 
   return (
     <React.Fragment>
-      <img
-        className="planet-image"
-        src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
-        alt={name}
-      />
-      <div>
-        <h3 className="random-planet-title">{name}</h3>
+      <div className="random-planet-image-wrapper">
+        <img
+          className="random-planet-image"
+          src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+          alt={name}
+        />
+      </div>
+
+      <div className="random-planet-content">
+        <h3 className="random-planet-title">
+          {name}&nbsp;
+          <span className="random-planet-id">#{id}</span>
+        </h3>
 
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">
+          <li className="random-planet-list-item list-group-item">
             <span className="term">Population</span>
             <span>{population}</span>
           </li>
-          <li className="list-group-item">
+          <li className="random-planet-list-item list-group-item">
             <span className="term">Rotation Period</span>
             <span>{rotationPeriod}</span>
           </li>
-          <li className="list-group-item">
+          <li className="random-planet-list-item list-group-item">
             <span className="term">Diameter</span>
             <span>{diameter}</span>
           </li>

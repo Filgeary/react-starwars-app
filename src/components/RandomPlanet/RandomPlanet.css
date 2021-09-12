@@ -1,29 +1,65 @@
 .random-planet {
   position: relative;
   display: flex;
-  min-height: 184px;
-  padding: 1rem;
+  justify-content: space-between;
+  min-height: 214px;
+  margin-bottom: 50px;
+  padding: 0;
+  background-color: transparent;
+  /* background-color: #222; */
 }
 
-.random-planet .planet-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 10px;
-  margin-right: 1rem;
+.random-planet-image-wrapper {
+  display: flex;
+  width: 40%;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.random-planet-image {
+  height: auto;
+  max-height: 250px;
+  border-radius: 50%;
+  box-shadow: 10px 5px 25px #00bc8c;
+  animation: rotate-reverse 20s linear infinite;
+}
+
+.random-planet-content {
+  width: 65%;
+  padding: 20px 28px;
+  background-color: #303030;
+  background: linear-gradient(90deg, #000 0%, 50%, #222 100%);
+  border-radius: 8px;
 }
 
 .random-planet-title {
-  padding-left: 1rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.random-planet .list-group {
-  margin: 1rem 0 0 1rem;
+.random-planet-id {
+  font-size: 0.7em;
+  font-style: italic;
+  color: #ccc;
 }
 
-.random-planet .list-group-item {
-  padding: 0.25rem;
+.random-planet-list-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 0.5rem;
+  background-color: transparent;
 }
 
 .random-planet .list-group-item .term {
-  margin-right: 0.5rem;
+  font-style: italic;
+}
+
+@keyframes rotate-reverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
 }
