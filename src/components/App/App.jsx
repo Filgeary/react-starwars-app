@@ -6,6 +6,8 @@ import RandomPlanet from '../RandomPlanet/RandomPlanet'
 import WelcomeScreen from '../WelcomeScreen/WelcomeScreen'
 import './App.css'
 
+// TODO: add Error Boundaries
+
 class App extends Component {
   state = {
     itemSelected: '',
