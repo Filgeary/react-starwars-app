@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import SwapiService from '../../services/SwapiService'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import Spinner from '../Spinner/Spinner'
 import './ItemList.css'
-
-const swapiService = new SwapiService()
 
 class ItemList extends Component {
   state = {
@@ -23,12 +20,11 @@ class ItemList extends Component {
   }
 
   updateItemList = () => {
+    const { getData } = this.props
+
     this.setState({ isLoading: true })
 
-    swapiService
-      .getAllPeople()
-      .then(this.handleItemListLoaded)
-      .catch(this.handleError)
+    getData().then(this.handleItemListLoaded).catch(this.handleError)
   }
 
   componentDidMount() {
