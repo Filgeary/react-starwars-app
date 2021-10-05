@@ -31,39 +31,38 @@ class ItemList extends Component {
     this.updateItemList()
   }
 
+  renderItems = (itemList, onItemSelected) => {
+    return itemList.map(({ id, name }) => {
+      return (
+        <li
+          key={id}
+          className="item-list-item list-group-item"
+          tabIndex="0"
+          onClick={() => onItemSelected(id)}
+        >
+          <span>{name}</span>
+          <span className="item-list-id">#{id}</span>
+        </li>
+      )
+    })
+  }
+
   render() {
     const { itemList, isLoading, isError } = this.state
     const { onItemSelected } = this.props
+
+    const mappedListItems =
+      itemList.length > 0 ? this.renderItems(itemList, onItemSelected) : null
 
     return (
       <ul className="item-list list-group">
         {isLoading ? <Spinner /> : null}
         {isError ? <ErrorMessage /> : null}
 
-        {!isLoading && !isError && itemList.length > 0 ? (
-          <ItemListView itemList={itemList} onItemSelected={onItemSelected} />
-        ) : null}
+        {!isLoading && !isError && itemList.length > 0 ? mappedListItems : null}
       </ul>
     )
   }
-}
-
-const ItemListView = ({ itemList, onItemSelected }) => {
-  return itemList.map(item => {
-    const { id, name } = item
-
-    return (
-      <li
-        key={id}
-        className="item-list-item list-group-item"
-        tabIndex="0"
-        onClick={() => onItemSelected(id)}
-      >
-        <span>{name}</span>
-        <span className="item-list-id">#{id}</span>
-      </li>
-    )
-  })
 }
 
 export default ItemList
