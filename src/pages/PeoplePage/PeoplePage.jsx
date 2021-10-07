@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary'
 import ItemList from '../../components/ItemList/ItemList'
 import PersonDetails from '../../components/PersonDetails/PersonDetails'
 import SwapiService from '../../services/SwapiService'
@@ -19,12 +20,18 @@ class PeoplePage extends Component {
     const { itemSelected } = this.state
 
     const itemListElem = (
-      <ItemList
-        onItemSelected={this.handleItemSelected}
-        getData={swapiService.getAllPeople}
-      />
+      <ErrorBoundary>
+        <ItemList
+          onItemSelected={this.handleItemSelected}
+          getData={swapiService.getAllPeople}
+        />
+      </ErrorBoundary>
     )
-    const personDetailsElem = <PersonDetails itemId={itemSelected} />
+    const personDetailsElem = (
+      <ErrorBoundary>
+        <PersonDetails itemId={itemSelected} />
+      </ErrorBoundary>
+    )
 
     return <RowWrapper left={itemListElem} right={personDetailsElem} />
   }
