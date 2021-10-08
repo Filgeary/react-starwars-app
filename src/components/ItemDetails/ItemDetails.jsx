@@ -40,6 +40,7 @@ class ItemDetails extends Component {
 
   render() {
     const { itemDetails, isLoading, isError } = this.state
+    const { id, name, gender, birthYear, eyeColor } = itemDetails
     const { itemId } = this.props
 
     if (!itemId) {
@@ -51,48 +52,41 @@ class ItemDetails extends Component {
     }
 
     return (
-      <div className="item-details card">
+      <section className="item-details card">
         {isLoading ? <Spinner /> : null}
         {isError ? <ErrorMessage /> : null}
+
         {!isError && Object.keys(itemDetails).length > 0 ? (
-          <ItemDetailsView itemDetails={itemDetails} />
+          <React.Fragment>
+            <img
+              className="item-details-image"
+              src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+              alt={name}
+            />
+
+            <div className="item-details-content card-body">
+              <h3 className="item-details-title">{name}</h3>
+
+              <ul className="list-group list-group-flush">
+                <li className="item-details-item list-group-item">
+                  <span className="item-details-term">Gender</span>
+                  <span>{gender}</span>
+                </li>
+                <li className="item-details-item list-group-item">
+                  <span className="item-details-term">Birth Year</span>
+                  <span>{birthYear}</span>
+                </li>
+                <li className="item-details-item list-group-item">
+                  <span className="item-details-term">Eye Color</span>
+                  <span>{eyeColor}</span>
+                </li>
+              </ul>
+            </div>
+          </React.Fragment>
         ) : null}
-      </div>
+      </section>
     )
   }
-}
-
-const ItemDetailsView = ({ itemDetails }) => {
-  const { id, name, gender, birthYear, eyeColor } = itemDetails
-
-  return (
-    <React.Fragment>
-      <img
-        className="item-image"
-        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-        alt={name}
-      />
-
-      <div className="item-content card-body">
-        <h3 className="item-details-title">{name}</h3>
-
-        <ul className="list-group list-group-flush">
-          <li className="item-list-item list-group-item">
-            <span className="term">Gender</span>
-            <span>{gender}</span>
-          </li>
-          <li className="item-list-item list-group-item">
-            <span className="term">Birth Year</span>
-            <span>{birthYear}</span>
-          </li>
-          <li className="item-list-item list-group-item">
-            <span className="term">Eye Color</span>
-            <span>{eyeColor}</span>
-          </li>
-        </ul>
-      </div>
-    </React.Fragment>
-  )
 }
 
 export default ItemDetails
