@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary'
 import ItemList from '../../components/ItemList/ItemList'
-import PersonDetails from '../../components/PersonDetails/PersonDetails'
+import ItemDetails from '../../components/ItemDetails/ItemDetails'
 import SwapiService from '../../services/SwapiService'
 import RowWrapper from '../../ui/RowWrapper'
 
@@ -27,13 +27,13 @@ class PeoplePage extends Component {
         />
       </ErrorBoundary>
     )
-    const personDetailsElem = (
+    const itemDetailsElem = (
       <ErrorBoundary>
-        <PersonDetails itemId={itemSelected} />
+        <ItemDetails itemId={itemSelected} getData={swapiService.getPerson} />
       </ErrorBoundary>
     )
 
-    return <RowWrapper left={itemListElem} right={personDetailsElem} />
+    return <RowWrapper left={itemListElem} right={itemDetailsElem} />
   }
 }
 

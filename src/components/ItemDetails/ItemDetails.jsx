@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
-import SwapiService from '../../services/SwapiService'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import Spinner from '../Spinner/Spinner'
-import './PersonDetails.css'
+import './ItemDetails.css'
 
-const swapiService = new SwapiService()
-
-class PersonDetails extends Component {
+class ItemDetails extends Component {
   state = {
     itemDetails: {},
     isLoading: true,
@@ -23,15 +20,12 @@ class PersonDetails extends Component {
   }
 
   updateItem = () => {
-    const { itemId } = this.props
+    const { itemId, getData } = this.props
     if (!itemId) return
 
     this.setState({ isLoading: true })
 
-    swapiService
-      .getPerson(itemId)
-      .then(this.handleItemLoaded)
-      .catch(this.handleError)
+    getData(itemId).then(this.handleItemLoaded).catch(this.handleError)
   }
 
   componentDidMount() {
@@ -57,41 +51,41 @@ class PersonDetails extends Component {
     }
 
     return (
-      <div className="person-details card">
+      <div className="item-details card">
         {isLoading ? <Spinner /> : null}
         {isError ? <ErrorMessage /> : null}
         {!isError && Object.keys(itemDetails).length > 0 ? (
-          <PersonDetailsView itemDetails={itemDetails} />
+          <ItemDetailsView itemDetails={itemDetails} />
         ) : null}
       </div>
     )
   }
 }
 
-const PersonDetailsView = ({ itemDetails }) => {
+const ItemDetailsView = ({ itemDetails }) => {
   const { id, name, gender, birthYear, eyeColor } = itemDetails
 
   return (
     <React.Fragment>
       <img
-        className="person-image"
+        className="item-image"
         src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
         alt={name}
       />
 
-      <div className="person-content card-body">
-        <h3 className="person-details-title">{name}</h3>
+      <div className="item-content card-body">
+        <h3 className="item-details-title">{name}</h3>
 
         <ul className="list-group list-group-flush">
-          <li className="person-list-item list-group-item">
+          <li className="item-list-item list-group-item">
             <span className="term">Gender</span>
             <span>{gender}</span>
           </li>
-          <li className="person-list-item list-group-item">
+          <li className="item-list-item list-group-item">
             <span className="term">Birth Year</span>
             <span>{birthYear}</span>
           </li>
-          <li className="person-list-item list-group-item">
+          <li className="item-list-item list-group-item">
             <span className="term">Eye Color</span>
             <span>{eyeColor}</span>
           </li>
@@ -101,4 +95,4 @@ const PersonDetailsView = ({ itemDetails }) => {
   )
 }
 
-export default PersonDetails
+export default ItemDetails
