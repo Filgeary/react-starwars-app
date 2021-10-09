@@ -3,15 +3,15 @@ import Adapter from './Adapter'
 const adapter = new Adapter()
 
 export default class SwapiService {
-  #baseUrl = 'https://swapi.dev/api'
+  #apiBase = 'https://swapi.dev/api'
   #imageBase = 'https://starwars-visualguide.com/assets/img'
 
   #getResource = async endpoint => {
-    const res = await fetch(this.#baseUrl + endpoint)
+    const res = await fetch(this.#apiBase + endpoint)
 
     if (!res.ok) {
       throw new Error(
-        `Failed to fetch ${this.#baseUrl + endpoint}, status: ${res.status}`,
+        `Failed to fetch ${this.#apiBase + endpoint}, status: ${res.status}`,
       )
     }
     return await res.json()
