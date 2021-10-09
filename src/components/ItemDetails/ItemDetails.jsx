@@ -3,9 +3,18 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import Spinner from '../Spinner/Spinner'
 import './ItemDetails.css'
 
+// Render Function
+export const Field = ({ item, prop, label }) => (
+  <li className="item-details-item list-group-item">
+    <span className="item-details-term">{label}</span>
+    <span>{item[prop]}</span>
+  </li>
+)
+
 class ItemDetails extends Component {
   state = {
-    itemDetails: {},
+    item: {},
+    imageUrl: '',
     isLoading: true,
     isError: false,
   }
@@ -15,8 +24,15 @@ class ItemDetails extends Component {
     console.error(err)
   }
 
-  handleItemLoaded = data => {
-    this.setState({ itemDetails: data, isLoading: false, isError: false })
+  handleItemLoaded = itemData => {
+    const { getImageUrl } = this.props
+
+    this.setState({
+      item: itemData,
+      imageUrl: getImageUrl(itemData),
+      isLoading: false,
+      isError: false,
+    })
   }
 
   updateItem = () => {
@@ -25,7 +41,10 @@ class ItemDetails extends Component {
 
     this.setState({ isLoading: true })
 
-    getData(itemId).then(this.handleItemLoaded).catch(this.handleError)
+    getData(itemId)
+      .then(this.handleItemLoaded)
+      .catch(this.handleError)
+      .finally(console.log(itemId)) // only for dev
   }
 
   componentDidMount() {
@@ -39,9 +58,9 @@ class ItemDetails extends Component {
   }
 
   render() {
-    const { itemDetails, isLoading, isError } = this.state
-    const { id, name, gender, birthYear, eyeColor } = itemDetails
-    const { itemId } = this.props
+    const { item, imageUrl, isLoading, isError } = this.state
+    const { name } = item
+    const { itemId, children } = this.props
 
     if (!itemId) {
       return (
@@ -56,30 +75,17 @@ class ItemDetails extends Component {
         {isLoading ? <Spinner /> : null}
         {isError ? <ErrorMessage /> : null}
 
-        {!isError && Object.keys(itemDetails).length > 0 ? (
+        {!isError && Object.keys(item).length > 0 ? (
           <React.Fragment>
-            <img
-              className="item-details-image"
-              src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-              alt={name}
-            />
+            <img className="item-details-image" src={imageUrl} alt={name} />
 
             <div className="item-details-content card-body">
               <h3 className="item-details-title">{name}</h3>
 
               <ul className="list-group list-group-flush">
-                <li className="item-details-item list-group-item">
-                  <span className="item-details-term">Gender</span>
-                  <span>{gender}</span>
-                </li>
-                <li className="item-details-item list-group-item">
-                  <span className="item-details-term">Birth Year</span>
-                  <span>{birthYear}</span>
-                </li>
-                <li className="item-details-item list-group-item">
-                  <span className="item-details-term">Eye Color</span>
-                  <span>{eyeColor}</span>
-                </li>
+                {React.Children.map(children, child => {
+                  return React.cloneElement(child, { item })
+                })}
               </ul>
             </div>
           </React.Fragment>
