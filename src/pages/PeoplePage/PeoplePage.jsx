@@ -18,16 +18,14 @@ class PeoplePage extends Component {
 
   render() {
     const { itemSelected } = this.state
-    const { getAllPeople, getPerson, getPersonImageUrl } = swapiService
+    const { getPerson, getPersonImageUrl } = swapiService
 
     const PeopleListElem = (
       <ErrorBoundary>
-        <ItemList
-          onItemSelected={this.handleItemSelected}
-          getData={getAllPeople}
-        />
+        <ItemList onItemSelected={this.handleItemSelected} />
       </ErrorBoundary>
     )
+
     const PersonDetailsElem = (
       <ErrorBoundary>
         <ItemDetails
