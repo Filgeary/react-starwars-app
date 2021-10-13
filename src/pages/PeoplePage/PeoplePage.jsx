@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary'
 import ItemDetails, { Field } from '../../components/ItemDetails/ItemDetails'
 import ItemList from '../../components/ItemList/ItemList'
+import withData from '../../hocs/withData'
 import SwapiService from '../../services/SwapiService'
 import RowWrapper from '../../ui/RowWrapper'
 
-const swapiService = new SwapiService()
+const { getAllPeople, getPerson, getPersonImageUrl } = new SwapiService()
+const ItemListWithData = withData(ItemList, getAllPeople)
 
 class PeoplePage extends Component {
   state = {
@@ -18,11 +20,10 @@ class PeoplePage extends Component {
 
   render() {
     const { itemSelected } = this.state
-    const { getPerson, getPersonImageUrl } = swapiService
 
     const PeopleListElem = (
       <ErrorBoundary>
-        <ItemList onItemSelected={this.handleItemSelected} />
+        <ItemListWithData onItemSelected={this.handleItemSelected} />
       </ErrorBoundary>
     )
 

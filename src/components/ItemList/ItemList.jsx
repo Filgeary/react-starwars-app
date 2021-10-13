@@ -1,9 +1,5 @@
 import React from 'react'
-import withData from '../../hocs/withData'
-import SwapiService from '../../services/SwapiService'
 import './ItemList.css'
-
-const { getAllPeople } = new SwapiService()
 
 const ItemList = ({ data, onItemSelected }) => {
   const renderItems = (itemList, onItemSelected) => {
@@ -31,4 +27,4 @@ const ItemList = ({ data, onItemSelected }) => {
   )
 }
 
-export default withData(ItemList, getAllPeople)
+export default ItemList

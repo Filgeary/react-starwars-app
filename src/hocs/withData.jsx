@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage'
 import Spinner from '../components/Spinner/Spinner'
 
+const getDisplayName = Wrapped => {
+  return Wrapped.displayName || Wrapped.name || 'Component'
+}
+
 const withData = (Wrapped, getData) => {
   return class extends Component {
+    static displayName = `withData(${getDisplayName(Wrapped)})`
+
     state = {
       data: null,
       isLoading: true,
