@@ -41,10 +41,10 @@ class ItemDetails extends Component {
 
     this.setState({ isLoading: true })
 
+    // prettier-ignore
     getData(itemId)
       .then(this.handleItemLoaded)
       .catch(this.handleError)
-      .finally(console.log(itemId)) // only for dev
   }
 
   componentDidMount() {
