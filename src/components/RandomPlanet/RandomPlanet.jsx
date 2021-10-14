@@ -5,7 +5,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import Spinner from '../Spinner/Spinner'
 import './RandomPlanet.css'
 
-const swapiService = new SwapiService()
+const { getPlanet } = new SwapiService()
 let timerId = 0
 
 class RandomPlanet extends Component {
@@ -29,8 +29,8 @@ class RandomPlanet extends Component {
 
     const idx = String(randomInt(2, 19))
 
-    swapiService
-      .getPlanet(idx)
+    // prettier-ignore
+    getPlanet(idx)
       .then(this.handlePlanetLoaded)
       .catch(this.handleError)
   }
@@ -54,6 +54,7 @@ class RandomPlanet extends Component {
       <div className="random-planet jumbotron rounded col-md-8 offset-2">
         {isLoading && Object.keys(planet).length === 0 ? <Spinner /> : null}
         {isError ? <ErrorMessage /> : null}
+
         {!isError && Object.keys(planet).length > 0 ? (
           <RandomPlanetView planet={planet} />
         ) : null}
