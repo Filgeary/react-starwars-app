@@ -21,8 +21,9 @@ const ItemList = ({ data, onItemSelected }) => {
   const mappedItems = data.length > 0 ? renderItems(data, onItemSelected) : null
 
   return (
+    // prettier-ignore
     <ul className="item-list list-group">
-      {data.length > 0 ? mappedItems : null}
+      {mappedItems}
     </ul>
   )
 }
