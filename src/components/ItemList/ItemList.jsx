@@ -1,73 +1,37 @@
-import React, { Component } from 'react'
-import SwapiService from '../../services/SwapiService'
-import ErrorMessage from '../ErrorMessage/ErrorMessage'
-import Spinner from '../Spinner/Spinner'
+import PropTypes from 'prop-types'
+import React from 'react'
 import './ItemList.css'
 
-const swapiService = new SwapiService()
-
-class ItemList extends Component {
-  state = {
-    itemList: [],
-    isLoading: true,
-    isError: false,
+const ItemList = ({ data, onItemSelected }) => {
+  const renderItems = (itemList, onItemSelected) => {
+    return itemList.map(({ id, name }) => {
+      return (
+        <li
+          key={id}
+          className="item-list-item list-group-item"
+          tabIndex="0"
+          onClick={() => onItemSelected(id)}
+        >
+          <span>{name}</span>
+          <span className="item-list-id">#{id}</span>
+        </li>
+      )
+    })
   }
 
-  handleItemListLoaded = data => {
-    this.setState({ itemList: data, isLoading: false, isError: false })
-  }
+  const mappedItems = data.length > 0 ? renderItems(data, onItemSelected) : null
 
-  handleError = err => {
-    this.setState({ isError: true, isLoading: false })
-    console.error(err)
-  }
-
-  updateItemList = () => {
-    this.setState({ isLoading: true })
-
-    swapiService
-      .getAllPeople()
-      .then(this.handleItemListLoaded)
-      .catch(this.handleError)
-  }
-
-  componentDidMount() {
-    this.updateItemList()
-  }
-
-  render() {
-    const { itemList, isLoading, isError } = this.state
-    const { onItemSelected } = this.props
-
-    return (
-      <ul className="item-list list-group">
-        {isLoading ? <Spinner /> : null}
-        {isError ? <ErrorMessage /> : null}
-
-        {!isLoading && !isError && itemList.length > 0 ? (
-          <ItemListView itemList={itemList} onItemSelected={onItemSelected} />
-        ) : null}
-      </ul>
-    )
-  }
+  return (
+    // prettier-ignore
+    <ul className="item-list list-group">
+      {mappedItems}
+    </ul>
+  )
 }
 
-const ItemListView = ({ itemList, onItemSelected }) => {
-  return itemList.map(item => {
-    const { id, name } = item
-
-    return (
-      <li
-        key={id}
-        className="item-list-item list-group-item"
-        tabIndex="0"
-        onClick={() => onItemSelected(id)}
-      >
-        <span>{name}</span>
-        <span className="item-list-id">#{id}</span>
-      </li>
-    )
-  })
+ItemList.propTypes = {
+  data: PropTypes.array.isRequired,
+  onItemSelected: PropTypes.func.isRequired,
 }
 
 export default ItemList

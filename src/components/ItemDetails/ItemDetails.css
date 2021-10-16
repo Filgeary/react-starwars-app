@@ -1,27 +1,27 @@
-.person-details {
+.item-details {
   position: relative;
   display: flex;
   flex-direction: row;
   min-height: 235px;
 }
 
-.person-details .person-image {
+.item-details-image {
   width: 40%;
   height: auto;
   max-height: 300px;
   object-fit: cover;
 }
 
-.person-content {
+.item-details-content {
   background: linear-gradient(90deg, #000 0%, 50%, #222 100%);
 }
 
-.person-details-title {
+.item-details-title {
   margin-bottom: 16px;
   text-align: center;
 }
 
-.person-list-item {
+.item-details-item {
   display: flex;
   justify-content: space-between;
   gap: 16px;
@@ -30,6 +30,6 @@
   background-color: transparent;
 }
 
-.person-details .list-group-item .term {
+.item-details-term {
   font-style: italic;
 }
