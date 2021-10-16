@@ -11,7 +11,7 @@ const ItemListWithData = withData(ItemList, getAllPeople)
 
 class PeoplePage extends Component {
   state = {
-    itemSelected: '',
+    itemSelected: '4',
   }
 
   handleItemSelected = id => {
