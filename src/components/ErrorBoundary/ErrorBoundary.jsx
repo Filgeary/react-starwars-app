@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
 
@@ -15,6 +16,10 @@ class ErrorBoundary extends Component {
 
     return this.props.children
   }
+}
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.node,
 }
 
 export default ErrorBoundary

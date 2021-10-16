@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import './ItemList.css'
 
@@ -26,6 +27,11 @@ const ItemList = ({ data, onItemSelected }) => {
       {mappedItems}
     </ul>
   )
+}
+
+ItemList.propTypes = {
+  data: PropTypes.array.isRequired,
+  onItemSelected: PropTypes.func.isRequired,
 }
 
 export default ItemList

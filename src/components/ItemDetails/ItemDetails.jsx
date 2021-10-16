@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import Spinner from '../Spinner/Spinner'
@@ -93,6 +94,13 @@ class ItemDetails extends Component {
       </section>
     )
   }
+}
+
+ItemDetails.propTypes = {
+  itemId: PropTypes.string.isRequired,
+  getData: PropTypes.func.isRequired,
+  getImageUrl: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export default ItemDetails

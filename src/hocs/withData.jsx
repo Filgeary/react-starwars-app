@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage'
 import Spinner from '../components/Spinner/Spinner'
@@ -47,6 +48,11 @@ const withData = (Wrapped, getData) => {
       return data ? <Wrapped {...this.props} data={data} /> : null
     }
   }
+}
+
+withData.propTypes = {
+  Wrapped: PropTypes.elementType.isRequired,
+  getData: PropTypes.func.isRequired,
 }
 
 export default withData
