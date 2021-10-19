@@ -1,22 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PeoplePage from '../../pages/PeoplePage/PeoplePage'
 import Header from '../Header/Header'
 import RandomPlanet from '../RandomPlanet/RandomPlanet'
 import WelcomeScreen from '../WelcomeScreen/WelcomeScreen'
 import './App.css'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="container-lg">
-        <Header />
-        <WelcomeScreen />
-        <RandomPlanet />
+const App = () => {
+  return (
+    <div className="container-lg">
+      <Header />
+      <WelcomeScreen />
+      <RandomPlanet />
 
-        <PeoplePage />
-      </div>
-    )
-  }
+      <PeoplePage />
+    </div>
+  )
 }
 
 export default App
