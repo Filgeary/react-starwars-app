@@ -5,7 +5,7 @@ import Spinner from '../Spinner/Spinner'
 import './ItemDetails.css'
 
 // Render Function
-export const Field = ({ item, prop, label }) => (
+const Field = ({ item, prop, label }) => (
   <li className="item-details-item list-group-item">
     <span className="item-details-term">{label}</span>
     <span>{item[prop]}</span>
@@ -96,6 +96,12 @@ class ItemDetails extends Component {
   }
 }
 
+Field.propTypes = {
+  item: PropTypes.object,
+  prop: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+}
+
 ItemDetails.propTypes = {
   itemId: PropTypes.string.isRequired,
   getData: PropTypes.func.isRequired,
@@ -104,3 +110,4 @@ ItemDetails.propTypes = {
 }
 
 export default ItemDetails
+export { Field }
