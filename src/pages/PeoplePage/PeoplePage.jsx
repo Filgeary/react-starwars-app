@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary'
 import ItemDetails, { Field } from '../../components/ItemDetails/ItemDetails'
 import ItemList from '../../components/ItemList/ItemList'
@@ -9,40 +9,34 @@ import RowWrapper from '../../ui/RowWrapper'
 const { getAllPeople, getPerson, getPersonImageUrl } = new SwapiService()
 const ItemListWithData = withData(ItemList, getAllPeople)
 
-class PeoplePage extends Component {
-  state = {
-    itemSelected: '4',
+const PeoplePage = ({ id = '4' }) => {
+  const [itemSelected, setItemSelected] = useState(id)
+
+  const handleItemSelected = itemId => {
+    setItemSelected(itemId)
   }
 
-  handleItemSelected = id => {
-    this.setState({ itemSelected: id })
-  }
+  const PeopleListElem = (
+    <ErrorBoundary>
+      <ItemListWithData onItemSelected={handleItemSelected} />
+    </ErrorBoundary>
+  )
 
-  render() {
-    const { itemSelected } = this.state
+  const PersonDetailsElem = (
+    <ErrorBoundary>
+      <ItemDetails
+        itemId={itemSelected}
+        getData={getPerson}
+        getImageUrl={getPersonImageUrl}
+      >
+        <Field prop="gender" label="Gender" />
+        <Field prop="birthYear" label="Birth Year" />
+        <Field prop="eyeColor" label="Eye Color" />
+      </ItemDetails>
+    </ErrorBoundary>
+  )
 
-    const PeopleListElem = (
-      <ErrorBoundary>
-        <ItemListWithData onItemSelected={this.handleItemSelected} />
-      </ErrorBoundary>
-    )
-
-    const PersonDetailsElem = (
-      <ErrorBoundary>
-        <ItemDetails
-          itemId={itemSelected}
-          getData={getPerson}
-          getImageUrl={getPersonImageUrl}
-        >
-          <Field prop="gender" label="Gender" />
-          <Field prop="birthYear" label="Birth Year" />
-          <Field prop="eyeColor" label="Eye Color" />
-        </ItemDetails>
-      </ErrorBoundary>
-    )
-
-    return <RowWrapper left={PeopleListElem} right={PersonDetailsElem} />
-  }
+  return <RowWrapper left={PeopleListElem} right={PersonDetailsElem} />
 }
 
 export default PeoplePage
