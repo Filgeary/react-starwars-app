@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import ErrorBoundary from '../../components/ErrorBoundary/ErrorBoundary'
 import ItemDetails, { Field } from '../../components/ItemDetails/ItemDetails'
@@ -37,6 +38,10 @@ const PeoplePage = ({ id = '4' }) => {
   )
 
   return <RowWrapper left={PeopleListElem} right={PersonDetailsElem} />
+}
+
+PeoplePage.propTypes = {
+  id: PropTypes.string,
 }
 
 export default PeoplePage
