@@ -1,106 +1,103 @@
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import Spinner from '../Spinner/Spinner'
 import './ItemDetails.css'
 
 // Render Function
-export const Field = ({ item, prop, label }) => (
+const Field = ({ item, prop, label }) => (
   <li className="item-details-item list-group-item">
     <span className="item-details-term">{label}</span>
     <span>{item[prop]}</span>
   </li>
 )
 
-class ItemDetails extends Component {
-  state = {
-    item: {},
-    imageUrl: '',
-    isLoading: true,
-    isError: false,
-  }
+const ItemDetails = ({ itemId, getData, getImageUrl, children }) => {
+  const [item, setItem] = useState({})
+  const [imageUrl, setImageUrl] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
+  const [isError, setIsError] = useState(false)
 
-  handleError = err => {
-    this.setState({ isError: true, isLoading: false })
+  const handleError = err => {
+    setIsError(true)
+    setIsLoading(false)
     console.error(err)
   }
 
-  handleItemLoaded = itemData => {
-    const { getImageUrl } = this.props
+  const handleItemLoaded = useCallback(
+    itemData => {
+      setItem(itemData)
+      setImageUrl(getImageUrl(itemData))
+      setIsLoading(false)
+      setIsError(false)
+    },
+    [getImageUrl],
+  )
 
-    this.setState({
-      item: itemData,
-      imageUrl: getImageUrl(itemData),
-      isLoading: false,
-      isError: false,
-    })
-  }
+  const updateItem = useCallback(
+    id => {
+      if (!id) return
 
-  updateItem = () => {
-    const { itemId, getData } = this.props
-    if (!itemId) return
+      setIsLoading(true)
 
-    this.setState({ isLoading: true })
+      // prettier-ignore
+      getData(id)
+      .then(handleItemLoaded)
+      .catch(handleError)
+    },
+    [getData, handleItemLoaded],
+  )
 
-    // prettier-ignore
-    getData(itemId)
-      .then(this.handleItemLoaded)
-      .catch(this.handleError)
-  }
+  useEffect(() => {
+    updateItem(itemId)
+  }, [itemId, updateItem])
 
-  componentDidMount() {
-    this.updateItem()
-  }
+  const { name } = item
 
-  componentDidUpdate(prevProps) {
-    if (this.props.itemId !== prevProps.itemId) {
-      this.updateItem()
-    }
-  }
-
-  render() {
-    const { item, imageUrl, isLoading, isError } = this.state
-    const { name } = item
-    const { itemId, children } = this.props
-
-    if (!itemId) {
-      return (
-        <section className="d-flex justify-content-center align-items-center">
-          <h3>Choose Item on Left Panel</h3>
-        </section>
-      )
-    }
-
+  if (!itemId) {
     return (
-      <section className="item-details card">
-        {isLoading ? <Spinner /> : null}
-        {isError ? <ErrorMessage /> : null}
-
-        {!isError && Object.keys(item).length > 0 ? (
-          <React.Fragment>
-            <img className="item-details-image" src={imageUrl} alt={name} />
-
-            <div className="item-details-content card-body">
-              <h3 className="item-details-title">{name}</h3>
-
-              <ul className="list-group list-group-flush">
-                {React.Children.map(children, child => {
-                  return React.cloneElement(child, { item })
-                })}
-              </ul>
-            </div>
-          </React.Fragment>
-        ) : null}
+      <section className="d-flex justify-content-center align-items-center">
+        <h3>Choose Item on Left Panel</h3>
       </section>
     )
   }
+
+  return (
+    <section className="item-details card">
+      {isLoading ? <Spinner /> : null}
+      {isError ? <ErrorMessage /> : null}
+
+      {!isError && Object.keys(item).length > 0 ? (
+        <>
+          <img className="item-details-image" src={imageUrl} alt={name} />
+
+          <div className="item-details-content card-body">
+            <h3 className="item-details-title">{name}</h3>
+
+            <ul className="list-group list-group-flush">
+              {React.Children.map(children, child => {
+                return React.cloneElement(child, { item })
+              })}
+            </ul>
+          </div>
+        </>
+      ) : null}
+    </section>
+  )
+}
+
+Field.propTypes = {
+  item: PropTypes.object,
+  prop: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 }
 
 ItemDetails.propTypes = {
-  itemId: PropTypes.string.isRequired,
+  itemId: PropTypes.string,
   getData: PropTypes.func.isRequired,
   getImageUrl: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 }
 
 export default ItemDetails
+export { Field }
