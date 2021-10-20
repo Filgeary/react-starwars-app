@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage'
 import Spinner from '../components/Spinner/Spinner'
 
@@ -8,46 +8,44 @@ const getDisplayName = Wrapped => {
 }
 
 const withData = (Wrapped, getData) => {
-  return class extends Component {
-    static displayName = `withData(${getDisplayName(Wrapped)})`
+  const WithData = props => {
+    const [data, setData] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
+    const [isError, setIsError] = useState(false)
 
-    state = {
-      data: null,
-      isLoading: true,
-      isError: false,
+    const handleItemListLoaded = data => {
+      setData(data)
+      setIsLoading(false)
+      setIsError(false)
     }
 
-    handleItemListLoaded = data => {
-      this.setState({ data: data, isLoading: false, isError: false })
-    }
-
-    handleError = err => {
-      this.setState({ isError: true, isLoading: false })
+    const handleError = err => {
+      setIsError(true)
+      setIsLoading(false)
       console.error(err)
     }
 
-    updateItemList = () => {
-      this.setState({ isLoading: true })
+    const updateItemList = useCallback(() => {
+      setIsLoading(true)
 
       // prettier-ignore
       getData()
-      .then(this.handleItemListLoaded)
-      .catch(this.handleError)
-    }
+      .then(handleItemListLoaded)
+      .catch(handleError)
+    }, [])
 
-    componentDidMount() {
-      this.updateItemList()
-    }
+    useEffect(() => {
+      updateItemList()
+    }, [updateItemList])
 
-    render() {
-      const { data, isLoading, isError } = this.state
+    if (isLoading) return <Spinner />
+    if (isError) return <ErrorMessage />
 
-      if (isLoading) return <Spinner />
-      if (isError) return <ErrorMessage />
-
-      return data ? <Wrapped {...this.props} data={data} /> : null
-    }
+    return data ? <Wrapped {...props} data={data} /> : null
   }
+  WithData.displayName = `withData(${getDisplayName(Wrapped)})`
+
+  return WithData
 }
 
 withData.propTypes = {
