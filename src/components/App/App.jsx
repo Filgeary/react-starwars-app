@@ -12,7 +12,7 @@ const App = () => {
       <WelcomeScreen />
       <RandomPlanet />
 
-      <PeoplePage />
+      <PeoplePage id={'4'} />
     </div>
   )
 }

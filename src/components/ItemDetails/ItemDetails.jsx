@@ -93,7 +93,7 @@ Field.propTypes = {
 }
 
 ItemDetails.propTypes = {
-  itemId: PropTypes.string.isRequired,
+  itemId: PropTypes.string,
   getData: PropTypes.func.isRequired,
   getImageUrl: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,

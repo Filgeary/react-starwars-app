@@ -10,8 +10,8 @@ import RowWrapper from '../../ui/RowWrapper'
 const { getAllPeople, getPerson, getPersonImageUrl } = new SwapiService()
 const ItemListWithData = withData(ItemList, getAllPeople)
 
-const PeoplePage = ({ id = '4' }) => {
-  const [itemSelected, setItemSelected] = useState(id)
+const PeoplePage = ({ id }) => {
+  const [itemSelected, setItemSelected] = useState(id || '')
 
   const handleItemSelected = itemId => {
     setItemSelected(itemId)
