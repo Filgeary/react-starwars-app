@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
 import PeoplePage from '../../pages/PeoplePage/PeoplePage'
 import Header from '../Header/Header'
 import RandomPlanet from '../RandomPlanet/RandomPlanet'
@@ -7,13 +8,17 @@ import './App.css'
 
 const App = () => {
   return (
-    <div className="container-lg">
-      <Header />
-      <WelcomeScreen />
-      <RandomPlanet />
+    <BrowserRouter>
+      <div className="container-lg">
+        <Header />
+        <WelcomeScreen />
+        <RandomPlanet />
 
-      <PeoplePage id={'4'} />
-    </div>
+        <PeoplePage id={'4'} />
+
+        <Route path="/people" component={PeoplePage} />
+      </div>
+    </BrowserRouter>
   )
 }
 
