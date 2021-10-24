@@ -13,11 +13,10 @@ const App = () => {
     <BrowserRouter>
       <div className="container-lg">
         <Header />
-        <WelcomeScreen />
 
         <Route path="/" exact>
+          <WelcomeScreen />
           <RandomPlanet />
-          <PeoplePage id={'4'} />
         </Route>
 
         <Route path="/people" component={PeoplePage} />
