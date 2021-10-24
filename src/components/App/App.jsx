@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
 import PeoplePage from '../../pages/PeoplePage/PeoplePage'
+import PlanetsPage from '../../pages/PlanetsPage/PlanetsPage'
 import Header from '../Header/Header'
 import RandomPlanet from '../RandomPlanet/RandomPlanet'
 import WelcomeScreen from '../WelcomeScreen/WelcomeScreen'
@@ -19,6 +20,7 @@ const App = () => {
         </Route>
 
         <Route path="/people" component={PeoplePage} />
+        <Route path="/planets" component={PlanetsPage} />
       </div>
     </BrowserRouter>
   )
