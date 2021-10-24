@@ -5,7 +5,7 @@ const WelcomeMessage = () => {
   return (
     <div className="welcome-message">
       <h3 className="welcome-message__title">
-        Once Upon a Time in a Galaxy ...
+        Welcome to StarWars DB, piligrim ...
       </h3>
     </div>
   )
