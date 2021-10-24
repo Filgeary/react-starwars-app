@@ -37,7 +37,7 @@ export default class Adapter {
       id: url.match(/([0-9]*)\/$/)[1],
       name,
       model,
-      manufacturer,
+      manufacturer: manufacturer.replace(', ', '\n'),
       costInCredits:
         cost_in_credits !== 'unknown'
           ? Number(cost_in_credits).toLocaleString()

@@ -8,7 +8,7 @@ import './ItemDetails.css'
 const Field = ({ item, prop, label }) => (
   <li className="item-details-item list-group-item">
     <span className="item-details-term">{label}</span>
-    <span>{item[prop]}</span>
+    <span className="item-details-term-desc">{item[prop]}</span>
   </li>
 )
 
