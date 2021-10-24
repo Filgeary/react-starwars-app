@@ -27,22 +27,28 @@ export default class Adapter {
     name,
     model,
     manufacturer,
-    costInCredits,
+    cost_in_credits,
     length,
     crew,
     passengers,
-    cargoCapacity,
+    cargo_capacity,
   }) => {
     return {
       id: url.match(/([0-9]*)\/$/)[1],
       name,
       model,
       manufacturer,
-      costInCredits,
+      costInCredits:
+        cost_in_credits !== 'unknown'
+          ? Number(cost_in_credits).toLocaleString()
+          : 'Unknown',
       length,
       crew,
       passengers,
-      cargoCapacity,
+      cargoCapacity:
+        cargo_capacity !== 'unknown'
+          ? Number(cargo_capacity).toLocaleString()
+          : 'Unknown',
     }
   }
 }
