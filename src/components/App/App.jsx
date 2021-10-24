@@ -5,7 +5,7 @@ import PlanetsPage from '../../pages/PlanetsPage/PlanetsPage'
 import StarshipsPage from '../../pages/StarshipsPage/StarshipsPage'
 import Header from '../Header/Header'
 import RandomPlanet from '../RandomPlanet/RandomPlanet'
-import WelcomeScreen from '../WelcomeScreen/WelcomeScreen'
+import WelcomeMessage from '../WelcomeMessage/WelcomeMessage'
 import './App.css'
 
 const App = () => {
@@ -15,7 +15,7 @@ const App = () => {
         <Header />
 
         <Route path="/" exact>
-          <WelcomeScreen />
+          <WelcomeMessage />
           <RandomPlanet />
         </Route>
 

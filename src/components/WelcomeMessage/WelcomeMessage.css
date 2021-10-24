@@ -1,4 +1,4 @@
-.welcome-screen {
+.welcome-message {
   display: flex;
   margin: 0 auto;
   margin-bottom: 40px;
@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-.welcome-screen__title {
+.welcome-message__title {
   margin: 0;
   font-size: 20px;
   background: linear-gradient(90deg, yellow, #aaa);
