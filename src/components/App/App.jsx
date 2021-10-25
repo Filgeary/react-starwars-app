@@ -6,6 +6,7 @@ import StarshipsPage from '../../pages/StarshipsPage/StarshipsPage'
 import Header from '../Header/Header'
 import RandomPlanet from '../RandomPlanet/RandomPlanet'
 import WelcomeMessage from '../WelcomeMessage/WelcomeMessage'
+import WelcomeStory from '../WelcomeStory/WelcomeStory'
 import './App.css'
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/" exact>
           <WelcomeMessage />
           <RandomPlanet />
+          <WelcomeStory />
         </Route>
 
         <Route path="/people" component={PeoplePage} />
