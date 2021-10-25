@@ -2,30 +2,37 @@
   position: relative;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 20px;
   min-height: 214px;
   margin-bottom: 50px;
   padding: 0;
   background-color: transparent;
-  /* background-color: #222; */
 }
 
 .random-planet-image-wrapper {
   display: flex;
-  width: 40%;
-  margin-right: 20px;
+  flex-shrink: 0;
   object-fit: cover;
 }
 
 .random-planet-image {
-  height: auto;
-  max-height: 250px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   box-shadow: 10px 5px 25px #00bc8c;
   animation: rotate-reverse 20s linear infinite;
 }
 
+@media (min-width: 900px) {
+  .random-planet-image {
+    width: 240px;
+    height: 240px;
+  }
+}
+
 .random-planet-content {
-  width: 65%;
+  flex-grow: 1;
   padding: 20px 28px;
   background-color: #303030;
   background: linear-gradient(90deg, #000 0%, 50%, #222 100%);
