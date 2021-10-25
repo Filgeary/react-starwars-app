@@ -14,12 +14,19 @@
   align-items: center;
 }
 
-.header-list-item a {
+.header-list-item-link {
   padding: 0.5rem 1rem;
   border-radius: 3px;
 }
 
-.header-list-item a:hover {
+.header-list-item-link:hover,
+.header-list-item-link:focus,
+.header-list-item-link:active {
+  color: #00bc8c;
+  background-color: #444;
+}
+
+.header-list-item-link--selected {
   color: #00bc8c;
   background-color: #444;
 }

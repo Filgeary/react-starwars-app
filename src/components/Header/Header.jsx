@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import './Header.css'
 
 const Header = () => {
@@ -11,19 +11,31 @@ const Header = () => {
 
       <ul className="header-list nav">
         <li className="header-list-item nav-item">
-          <Link to="/people/" className="nav-link">
+          <NavLink
+            to="/people/"
+            className="nav-link header-list-item-link"
+            activeClassName="header-list-item-link--selected"
+          >
             People
-          </Link>
+          </NavLink>
         </li>
         <li className="header-list-item nav-item">
-          <Link to="/planets/" className="nav-link">
+          <NavLink
+            to="/planets/"
+            className="nav-link header-list-item-link"
+            activeClassName="header-list-item-link--selected"
+          >
             Planets
-          </Link>
+          </NavLink>
         </li>
         <li className="header-list-item nav-item">
-          <Link to="/starships/" className="nav-link">
+          <NavLink
+            to="/starships/"
+            className="nav-link header-list-item-link"
+            activeClassName="header-list-item-link--selected"
+          >
             Starships
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </div>
