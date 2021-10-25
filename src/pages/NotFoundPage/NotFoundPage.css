@@ -1,0 +1,40 @@
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 100%;
+  max-width: 800px;
+}
+
+.not-found-page__desc-wrap {
+  position: relative;
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  height: 500px;
+  max-width: 800px;
+  max-height: 500px;
+
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent),
+    url('https://starwars-visualguide.com/assets/img/characters/4.jpg')
+      no-repeat center center;
+  background-size: contain;
+}
+
+.not-found-page__desc {
+  display: flex;
+  margin: 0 auto;
+  margin-top: auto;
+  justify-content: center;
+  font-size: 44px;
+  font-style: italic;
+  color: hsl(0, 0%, 90%);
+  background-color: #000;
+}
+
+.not-found-page__control--home {
+  font-size: 22px !important;
+  margin: auto;
+}

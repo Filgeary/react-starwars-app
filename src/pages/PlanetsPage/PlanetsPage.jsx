@@ -7,10 +7,10 @@ import withData from '../../hocs/withData'
 import SwapiService from '../../services/SwapiService'
 import RowWrapper from '../../ui/RowWrapper'
 
-const { getAllPeople, getPerson, getPersonImageUrl } = new SwapiService()
-const ItemListWithData = withData(ItemList, getAllPeople)
+const { getAllPlanets, getPlanet, getPlanetImageUrl } = new SwapiService()
+const ItemListWithData = withData(ItemList, getAllPlanets)
 
-const PeoplePage = ({ id }) => {
+const PlanetsPage = ({ id }) => {
   const [itemSelected, setItemSelected] = useState(id || '')
 
   const handleItemSelected = itemId => {
@@ -27,26 +27,26 @@ const PeoplePage = ({ id }) => {
     <ErrorBoundary>
       <ItemDetails
         itemId={itemSelected}
-        getData={getPerson}
-        getImageUrl={getPersonImageUrl}
+        getData={getPlanet}
+        getImageUrl={getPlanetImageUrl}
       >
-        <Field prop="gender" label="Gender" />
-        <Field prop="birthYear" label="Birth Year" />
-        <Field prop="eyeColor" label="Eye Color" />
+        <Field prop="population" label="Population" />
+        <Field prop="rotationPeriod" label="Rotation Period" />
+        <Field prop="diameter" label="Diameter" />
       </ItemDetails>
     </ErrorBoundary>
   )
 
   return (
     <>
-      <h2 className="mb-3">People</h2>
+      <h2 className="mb-3">Planets</h2>
       <RowWrapper left={ListElem} right={DetailsElem} />
     </>
   )
 }
 
-PeoplePage.propTypes = {
+PlanetsPage.propTypes = {
   id: PropTypes.string,
 }
 
-export default PeoplePage
+export default PlanetsPage

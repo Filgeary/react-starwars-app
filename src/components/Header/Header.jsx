@@ -1,28 +1,41 @@
 import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import './Header.css'
 
 const Header = () => {
   return (
     <div className="header d-flex">
       <h2 className="header-title">
-        <a href="home">StarWars DB</a>
+        <Link to="/">StarWars DB</Link>
       </h2>
 
       <ul className="header-list nav">
         <li className="header-list-item nav-item">
-          <a href="people" className="nav-link">
+          <NavLink
+            to="/people/"
+            className="nav-link header-list-item-link"
+            activeClassName="header-list-item-link--selected"
+          >
             People
-          </a>
+          </NavLink>
         </li>
         <li className="header-list-item nav-item">
-          <a href="planets" className="nav-link">
+          <NavLink
+            to="/planets/"
+            className="nav-link header-list-item-link"
+            activeClassName="header-list-item-link--selected"
+          >
             Planets
-          </a>
+          </NavLink>
         </li>
         <li className="header-list-item nav-item">
-          <a href="starships" className="nav-link">
+          <NavLink
+            to="/starships/"
+            className="nav-link header-list-item-link"
+            activeClassName="header-list-item-link--selected"
+          >
             Starships
-          </a>
+          </NavLink>
         </li>
       </ul>
     </div>

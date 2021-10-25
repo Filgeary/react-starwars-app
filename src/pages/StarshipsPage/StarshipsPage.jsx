@@ -7,10 +7,10 @@ import withData from '../../hocs/withData'
 import SwapiService from '../../services/SwapiService'
 import RowWrapper from '../../ui/RowWrapper'
 
-const { getAllPeople, getPerson, getPersonImageUrl } = new SwapiService()
-const ItemListWithData = withData(ItemList, getAllPeople)
+const { getAllStarships, getStarship, getStarshipImageUrl } = new SwapiService()
+const ItemListWithData = withData(ItemList, getAllStarships)
 
-const PeoplePage = ({ id }) => {
+const StarshipsPage = ({ id }) => {
   const [itemSelected, setItemSelected] = useState(id || '')
 
   const handleItemSelected = itemId => {
@@ -27,26 +27,30 @@ const PeoplePage = ({ id }) => {
     <ErrorBoundary>
       <ItemDetails
         itemId={itemSelected}
-        getData={getPerson}
-        getImageUrl={getPersonImageUrl}
+        getData={getStarship}
+        getImageUrl={getStarshipImageUrl}
       >
-        <Field prop="gender" label="Gender" />
-        <Field prop="birthYear" label="Birth Year" />
-        <Field prop="eyeColor" label="Eye Color" />
+        <Field prop="model" label="Model" />
+        <Field prop="manufacturer" label="Manufacturer" />
+        <Field prop="costInCredits" label="Cost In Credits" />
+        <Field prop="length" label="Length" />
+        <Field prop="crew" label="Crew" />
+        <Field prop="passengers" label="Passengers" />
+        <Field prop="cargoCapacity" label="Cargo Capacity" />
       </ItemDetails>
     </ErrorBoundary>
   )
 
   return (
     <>
-      <h2 className="mb-3">People</h2>
+      <h2 className="mb-3">Starships</h2>
       <RowWrapper left={ListElem} right={DetailsElem} />
     </>
   )
 }
 
-PeoplePage.propTypes = {
+StarshipsPage.propTypes = {
   id: PropTypes.string,
 }
 
-export default PeoplePage
+export default StarshipsPage

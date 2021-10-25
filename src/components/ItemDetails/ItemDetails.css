@@ -3,13 +3,15 @@
   display: flex;
   flex-direction: row;
   min-height: 235px;
+  background-color: transparent;
 }
 
 .item-details-image {
   width: 40%;
+  margin-bottom: auto;
   height: auto;
   max-height: 300px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .item-details-content {
@@ -32,4 +34,9 @@
 
 .item-details-term {
   font-style: italic;
+}
+
+.item-details-term-desc {
+  text-align: right;
+  white-space: pre-wrap;
 }

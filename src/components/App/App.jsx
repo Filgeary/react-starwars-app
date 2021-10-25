@@ -1,19 +1,36 @@
 import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage'
 import PeoplePage from '../../pages/PeoplePage/PeoplePage'
+import PlanetsPage from '../../pages/PlanetsPage/PlanetsPage'
+import StarshipsPage from '../../pages/StarshipsPage/StarshipsPage'
 import Header from '../Header/Header'
 import RandomPlanet from '../RandomPlanet/RandomPlanet'
-import WelcomeScreen from '../WelcomeScreen/WelcomeScreen'
+import WelcomeMessage from '../WelcomeMessage/WelcomeMessage'
+import WelcomeStory from '../WelcomeStory/WelcomeStory'
 import './App.css'
 
 const App = () => {
   return (
-    <div className="container-lg">
-      <Header />
-      <WelcomeScreen />
-      <RandomPlanet />
+    <BrowserRouter>
+      <div className="container-lg">
+        <Header />
+        <WelcomeMessage />
 
-      <PeoplePage id={'4'} />
-    </div>
+        <Switch>
+          <Route path="/" exact>
+            <RandomPlanet />
+            <WelcomeStory />
+          </Route>
+
+          <Route path="/people" component={PeoplePage} />
+          <Route path="/planets" component={PlanetsPage} />
+          <Route path="/starships" component={StarshipsPage} />
+
+          <Route component={NotFoundPage} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   )
 }
 
