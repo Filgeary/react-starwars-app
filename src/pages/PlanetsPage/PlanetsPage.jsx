@@ -17,13 +17,13 @@ const PlanetsPage = ({ id }) => {
     setItemSelected(itemId)
   }
 
-  const PlanetsListElem = (
+  const ListElem = (
     <ErrorBoundary>
       <ItemListWithData onItemSelected={handleItemSelected} />
     </ErrorBoundary>
   )
 
-  const PlanetDetailsElem = (
+  const DetailsElem = (
     <ErrorBoundary>
       <ItemDetails
         itemId={itemSelected}
@@ -37,7 +37,12 @@ const PlanetsPage = ({ id }) => {
     </ErrorBoundary>
   )
 
-  return <RowWrapper left={PlanetsListElem} right={PlanetDetailsElem} />
+  return (
+    <>
+      <h2 className="mb-3">Planets</h2>
+      <RowWrapper left={ListElem} right={DetailsElem} />
+    </>
+  )
 }
 
 PlanetsPage.propTypes = {

@@ -17,13 +17,13 @@ const PeoplePage = ({ id }) => {
     setItemSelected(itemId)
   }
 
-  const PeopleListElem = (
+  const ListElem = (
     <ErrorBoundary>
       <ItemListWithData onItemSelected={handleItemSelected} />
     </ErrorBoundary>
   )
 
-  const PersonDetailsElem = (
+  const DetailsElem = (
     <ErrorBoundary>
       <ItemDetails
         itemId={itemSelected}
@@ -37,7 +37,12 @@ const PeoplePage = ({ id }) => {
     </ErrorBoundary>
   )
 
-  return <RowWrapper left={PeopleListElem} right={PersonDetailsElem} />
+  return (
+    <>
+      <h2 className="mb-3">People</h2>
+      <RowWrapper left={ListElem} right={DetailsElem} />
+    </>
+  )
 }
 
 PeoplePage.propTypes = {

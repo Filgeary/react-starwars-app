@@ -41,7 +41,12 @@ const StarshipsPage = ({ id }) => {
     </ErrorBoundary>
   )
 
-  return <RowWrapper left={ListElem} right={DetailsElem} />
+  return (
+    <>
+      <h2 className="mb-3">Starships</h2>
+      <RowWrapper left={ListElem} right={DetailsElem} />
+    </>
+  )
 }
 
 StarshipsPage.propTypes = {
