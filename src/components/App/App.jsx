@@ -15,10 +15,10 @@ const App = () => {
     <BrowserRouter>
       <div className="container-lg">
         <Header />
+        <WelcomeMessage />
 
         <Switch>
           <Route path="/" exact>
-            <WelcomeMessage />
             <RandomPlanet />
             <WelcomeStory />
           </Route>
