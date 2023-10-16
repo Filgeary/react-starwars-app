@@ -1,10 +1,6 @@
 # React StarWars-DB app
 
-> React training-project from udemy course
-
-## Preview
-
-![preview-image](./preview.webp)
+> React training-project
 
 ## What I've learned
 
@@ -19,3 +15,15 @@
 ## Next step
 
 - add tests & TypeScript
+
+---
+
+## Previews
+
+### Main Screen
+
+![main-screen](assets-starwars/00-main-screen.webp)
+
+### People Page
+
+![people-page](assets-starwars/01-people-page.webp)
